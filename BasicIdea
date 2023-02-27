@@ -1,0 +1,53 @@
+==============
+API Requests
+==============
+1 -> 1 call to data/stats/member_recent_races (will default to authenticated user) [recent_races.json]
+2 -> 10 calls to data/results/get (1 for each race) [sample_results.json]
+
+=======================
+Group Races by Series
+=======================
+Races should be grouped be series and track
+[Sample layout]
+
+Most Recent Races
+-----------------
+> Global Mazda MX-5 Fanatec Cup @ Suzuka
+	> Race 1
+	> Race 2
+
+> Global Mazda MX-5 Fanatec Cup @ Mid-Ohio
+	> Race 1
+
+> iRacing GR Cup - Fixed @ Watkins Glenn
+	> Race 1
+	> Race 2
+
+
+====================
+Statistics
+====================
+Series/Track
+	-> Corners per lap at that track
+	-> Average entries per race
+	-> Average finishers per race
+	-> Overall best laptime across all races in that series at that track
+	-> My best laptime across all races in that series at that track
+	-> Average difference between the Overall best lap and my best lap
+	-> My average start position
+	-> My Average finish position
+	-> Avg spot change (avg [finish-position - start-position ])
+	-> Avg incident points overall
+	-> My Avg incident points
+	-> My Best Championship points
+
+Race
+	-> Mostly the above data but per race instead of average
+	-> Entries count
+	-> finishers count
+	-> Best lap time for that race
+	-> My best lap in that race
+	-> my start / finish position
+	-> Avg incident points for that race
+	-> my incident points for that race
+	-> championship points
