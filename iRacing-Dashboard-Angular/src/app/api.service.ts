@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Secret } from './secret';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,16 @@ export class ApiService {
   race_resultsURL:string = "https://members-ng.iracing.com/data/results/get";
 
   requestLogIn():any{
-    const headers = { 
-      'content-type': 'application/json' 
-  };
-    const body = JSON.stringify({
+    // const httpHeaders = new HttpHeaders({
+    //   'Content-Type': 'application/x-www-form-urlencoded',
+    //   'Access-Control-Allow-Origin': 'http://localhost:4200'
+    // });
+    let body = {
       email: `${Secret.email}`,
       password: `${Secret.password}`
+    };
+    return this.http.post('/auth/post/json', body).subscribe((response) => {
     });
-    return this.http.post(`${this.loginURL}`, body, {'headers': headers})
   }
 
   getRecentRaces(user_id:string):any{

@@ -14,5 +14,5 @@ export class HomepageComponent {
       console.log(response);
     })
   }
-
 }
+
