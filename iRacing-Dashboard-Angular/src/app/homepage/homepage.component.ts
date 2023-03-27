@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Secret } from '../secret';
+import { Races } from '../races';
 
 @Component({
   selector: 'app-homepage',
@@ -10,14 +11,20 @@ import { Secret } from '../secret';
 export class HomepageComponent {
   constructor(private apiService:ApiService) {}
   
+  listRaces:Races = {} as Races;
+  recentRaces:string = {} as string;
   login(){
     this.apiService.requestLogIn();
-    //console.log(Secret.custId);
   }
   getRecentRaces(){
     this.apiService.getRecentRaces().subscribe((response:any) => {
-      console.log(response);
+      this.recentRaces = response.link;
+      //console.log(this.recentRaces);
+    })
+  }
+  extractRaces(){
+    this.apiService.extractRecentRaces(this.recentRaces).subscribe((response:any) => {
+      //console.log(response);
     })
   }
 }
-

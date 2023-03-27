@@ -9,7 +9,8 @@ import { Observable } from 'rxjs/internal/Observable';
 export class ApiService {
 
   constructor(private http:HttpClient) { }
-  
+
+  static postResponse:any = {} as any;
   race_resultsURL:string = "https://members-ng.iracing.com/data/results/get";
 
   requestLogIn():any{
@@ -24,14 +25,18 @@ export class ApiService {
       password: `${Secret.password}`
     };
     return this.http.post('/auth', body, httpOptions).subscribe((response) => {
-      //Secret.custId = response.custId;
-      console.log(response);
+      ApiService.postResponse = response;
+      console.log(ApiService.postResponse);
     });
   }
 
   cust_ID:string = "543757";
   getRecentRaces():any{
-    return this.http.get(`/data/stats/member_recent_races?cust_id=${this.cust_ID}`);
+    return this.http.get(`data/stats/member_recent_races?cust_id=${this.cust_ID}`);
+  }
+
+  extractRecentRaces(url:string){
+    return this.http.get(`${url}`);
   }
 
   getRaceResults(subsession_id:string):any{

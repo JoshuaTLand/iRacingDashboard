@@ -3,7 +3,7 @@
     <div class="col">
       <h1 class="m-2">iRacing Dashboard</h1>
       <div class="ms-2">
-        <button type="button" class="btn btn-primary" (click)="login()">
+        <button type="button" class="mx-1 btn btn-primary" (click)="login()">
           Send Login Request
         </button>
         <button
@@ -13,7 +13,17 @@
         >
           Get recent Races
         </button>
+        <button
+          type="button"
+          class="mx-1 btn btn-primary"
+          (click)="extractRaces()"
+        >
+          Extract Races
+        </button>
       </div>
     </div>
+  </div>
+  <div class="m-2 main_display">
+    <h1 class="m-2 px-1 title">Title</h1>
   </div>
 </div>
