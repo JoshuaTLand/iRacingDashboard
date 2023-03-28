@@ -53,7 +53,10 @@
         <p class="series">Race 2</p>
       </section>
       <div *ngFor="let race of listRaces.races">
-        <p>{{ race.series_name }}</p>
+        <p>
+          {{ race.series_name }} @ {{ race.track.track_name }}
+          <button (click)="getRaceData(race.subsession_id)">Click</button>
+        </p>
       </div>
     </div>
   </div>

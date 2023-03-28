@@ -41,4 +41,14 @@ export class ApiService {
     return this.http.get(`${url.replace("https://scorpio-assets.s3.amazonaws.com", "")}`);
   }
 
+  getRaceData(subsession_id: number):any{
+    var subj = new Subject<any>();
+    this.http.get(`data/results/get?subsession_id=${subsession_id}&include_licenses=false`).subscribe((x:any) => {
+      this.extractAmazonData(x.link).subscribe((response:any) => {
+        subj.next(response);
+      });
+    });
+    return subj.asObservable();
+  }
+
 }
