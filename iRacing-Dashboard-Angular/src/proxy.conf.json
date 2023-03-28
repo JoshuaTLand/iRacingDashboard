@@ -17,7 +17,6 @@
         "target": "https://scorpio-assets.s3.amazonaws.com/",
         "secure": true,
         "changeOrigin": true,
-        "logLevel": "debug",
-        "cookieDomainRewrite": "localhost"
+        "logLevel": "debug"
     }
 }
