@@ -3,15 +3,33 @@
     <div class="col">
       <h1 class="m-2">iRacing Dashboard</h1>
       <div class="color_samples">
-        <div class="color_block" id="white"></div>
-        <div class="color_block" id="gray_1"></div>
-        <div class="color_block" id="gray_2"></div>
-        <div class="color_block" id="gray_3"></div>
-        <div class="color_block" id="gray_4"></div>
-        <div class="color_block" id="6c757d"></div>
-        <div class="color_block" id="495057"></div>
-        <div class="color_block" id="343a40"></div>
-        <div class="color_block" id="212529"></div>
+        <div class="color_block" id="white">
+          <p class="color_box_font">#f8f9fa</p>
+        </div>
+        <div class="color_block" id="gray_1">
+          <p class="color_box_font">#e9ecef</p>
+        </div>
+        <div class="color_block" id="gray_2">
+          <p class="color_box_font">#dee2e6</p>
+        </div>
+        <div class="color_block" id="gray_3">
+          <p class="color_box_font">#ced4da</p>
+        </div>
+        <div class="color_block" id="gray_4">
+          <p class="color_box_font">#adb5bd</p>
+        </div>
+        <div class="color_block" id="dark_grey_1">
+          <p class="color_box_font">#6c757d</p>
+        </div>
+        <div class="color_block" id="dark_grey_2">
+          <p class="color_box_font">#495057</p>
+        </div>
+        <div class="color_block" id="dark_grey_3">
+          <p class="color_box_font">#343a40</p>
+        </div>
+        <div class="color_block" id="black">
+          <p class="color_box_font">#212529</p>
+        </div>
       </div>
       <div class="ms-2">
         <button type="button" class="mx-1 btn btn-primary" (click)="login()">
@@ -34,6 +52,9 @@
         <p class="series">Race 1</p>
         <p class="series">Race 2</p>
       </section>
+      <div *ngFor="let race of listRaces.races">
+        <p>{{ race.series_name }}</p>
+      </div>
     </div>
   </div>
 </div>

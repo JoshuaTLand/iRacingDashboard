@@ -18,7 +18,8 @@ export class HomepageComponent {
   }
   getRecentRaces(){
     this.apiService.getRecentRaces().subscribe(x => {
-      console.log(x)
+      this.listRaces = x;
+      console.log(x);
     });
   }
 }
