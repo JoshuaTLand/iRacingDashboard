@@ -10,9 +10,6 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-  static postResponse:any = {} as any;
-  race_resultsURL:string = "https://members-ng.iracing.com/data/results/get";
-
   requestLogIn():any{
     const httpOptions = {
       headers: new HttpHeaders({
@@ -25,8 +22,6 @@ export class ApiService {
       password: `${Secret.password}`
     };
     return this.http.post('/auth', body, httpOptions).subscribe((response) => {
-      ApiService.postResponse = response;
-      console.log(ApiService.postResponse);
     });
   }
 
@@ -40,6 +35,6 @@ export class ApiService {
   }
 
   getRaceResults(subsession_id:string):any{
-    return this.http.get(`${this.race_resultsURL}?subsession_id=${subsession_id}`)
+    
   }
 }

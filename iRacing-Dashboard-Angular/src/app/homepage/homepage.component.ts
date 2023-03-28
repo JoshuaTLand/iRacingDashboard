@@ -19,12 +19,10 @@ export class HomepageComponent {
   getRecentRaces(){
     this.apiService.getRecentRaces().subscribe((response:any) => {
       this.recentRaces = response.link;
-      //console.log(this.recentRaces);
     })
   }
   extractRaces(){
     this.apiService.extractRecentRaces(this.recentRaces).subscribe((response:any) => {
-      //console.log(response);
     })
   }
 }
