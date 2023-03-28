@@ -17,7 +17,8 @@ export class HomepageComponent {
     this.apiService.requestLogIn();
   }
   getRecentRaces(){
-    var response = this.apiService.getRecentRaces();
-    // console.log(response);
+    this.apiService.getRecentRaces().subscribe(x => {
+      console.log(x)
+    });
   }
 }
