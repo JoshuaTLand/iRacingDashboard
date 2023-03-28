@@ -17,13 +17,7 @@ export class HomepageComponent {
     this.apiService.requestLogIn();
   }
   getRecentRaces(){
-    this.apiService.getRecentRaces().subscribe((response:any) => {
-      this.recentRaces = response.link;
-    })
-  }
-  extractRaces(){
-    this.apiService.extractRecentRaces(this.recentRaces.replace("https://scorpio-assets.s3.amazonaws.com", "")).subscribe((response:any) => {
-      //console.log(response);
-    })
+    var response = this.apiService.getRecentRaces();
+    // console.log(response);
   }
 }

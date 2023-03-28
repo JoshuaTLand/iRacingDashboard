@@ -27,14 +27,16 @@ export class ApiService {
 
   cust_ID:string = "543757";
   getRecentRaces():any{
-    return this.http.get(`data/stats/member_recent_races?cust_id=${this.cust_ID}`);
+    return this.http.get(`data/stats/member_recent_races?cust_id=${this.cust_ID}`).subscribe((response:any) => {
+      var data = this.extractAmazonData(response.link);
+      console.log(data);
+    });
   }
 
-  extractRecentRaces(url:string){
-    return this.http.get(`${url}`);
+  extractAmazonData(url:string){
+    return this.http.get(`${url.replace("https://scorpio-assets.s3.amazonaws.com", "")}`).subscribe((response) => {
+      return response;
+    });
   }
 
-  getRaceResults(subsession_id:string):any{
-    
-  }
 }
