@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col">
       <h1 class="m-2">iRacing Dashboard</h1>
-
       <!-- Color Samples -->
       <div class="color_samples">
         <div class="color_block" id="white">
@@ -54,10 +53,22 @@
     <div class="col">
       <section class="main_display">
         <h3 class="title">Recent Races</h3>
-        <div *ngFor="let race of listRaces.races">
+        <div *ngFor="let header of raceHeaders">
           <p class="series">
-            {{ race.series_name }} @ {{ race.track.track_name }}
+            {{ header.series_name }} @ {{ header.track_name }}
           </p>
+          <div class="races">
+            <div *ngFor="let race of listRacesDetails">
+              <div
+                *ngIf="
+                  race.series_name === header.series_name &&
+                  race.track.track_name === header.track_name
+                "
+              >
+                <p>Race - {{ race.start_time }}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

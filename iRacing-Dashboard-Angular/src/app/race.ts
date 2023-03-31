@@ -1,4 +1,4 @@
-export interface Race {
+export interface RaceDetails {
     subsession_id:             number;
     season_id:                 number;
     season_name:               string;
