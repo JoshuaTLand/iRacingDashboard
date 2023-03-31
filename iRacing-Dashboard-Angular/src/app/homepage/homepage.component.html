@@ -2,6 +2,8 @@
   <div class="row">
     <div class="col">
       <h1 class="m-2">iRacing Dashboard</h1>
+
+      <!-- Color Samples -->
       <div class="color_samples">
         <div class="color_block" id="white">
           <p class="color_box_font">#f8f9fa</p>
@@ -31,33 +33,33 @@
           <p class="color_box_font">#212529</p>
         </div>
       </div>
+
+      <!-- Buttons Row -->
       <div class="ms-2">
-        <button type="button" class="mx-1 btn btn-primary" (click)="login()">
-          Send Login Request
-        </button>
         <button
           type="button"
-          class="btn btn-primary"
+          class="mx-1 btn btn-primary"
           (click)="getRecentRaces()"
         >
-          Get recent Races
+          Refresh Races
+        </button>
+        <button type="button" class="mx-1 btn btn-primary" (click)="logLists()">
+          Log
         </button>
       </div>
     </div>
   </div>
+  <!-- Main Stats Display -->
   <div class="row">
     <div class="col">
       <section class="main_display">
         <h3 class="title">Recent Races</h3>
-        <p class="series">Race 1</p>
-        <p class="series">Race 2</p>
+        <div *ngFor="let race of listRaces.races">
+          <p class="series">
+            {{ race.series_name }} @ {{ race.track.track_name }}
+          </p>
+        </div>
       </section>
-      <div *ngFor="let race of listRaces.races">
-        <p>
-          {{ race.series_name }} @ {{ race.track.track_name }}
-          <button (click)="getRaceData(race.subsession_id)">Click</button>
-        </p>
-      </div>
     </div>
   </div>
 </div>
