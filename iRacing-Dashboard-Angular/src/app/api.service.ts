@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Secret } from './secret';
+import { Observable } from 'rxjs/internal/Observable';
+import { Subject, Subscribable, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +10,45 @@ import { Secret } from './secret';
 export class ApiService {
 
   constructor(private http:HttpClient) { }
-  
-  loginURL:string = "https://members-ng.iracing.com/auth";
 
   requestLogIn():any{
-    const headers = { 'content-type': 'application/json' };
-    const body = {
-      "email": `"{{${Secret.email}}}"`,
-      "password": `"{{${Secret.password}}}"`
-    }
-    return this.http.post(`${this.loginURL}`, body, {'headers': headers})
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      }),
+      observe: 'response' as 'response'
+    };
+    let body = {
+      email: `${Secret.email}`,
+      password: `${Secret.password}`
+    };
+    return this.http.post('/auth', body, httpOptions).subscribe((response) => { 
+    });
   }
+
+  cust_ID:string = "543757";
+  getRecentRaces(){
+    var subj = new Subject<any>();
+    this.http.get(`data/stats/member_recent_races?cust_id=${this.cust_ID}`).subscribe((x:any) => {
+      this.extractAmazonData(x.link).subscribe((response:any) => {
+        subj.next(response);
+      });
+    });
+    return subj.asObservable();
+  }
+
+  extractAmazonData(url:string){
+    return this.http.get(`${url.replace("https://scorpio-assets.s3.amazonaws.com", "")}`);
+  }
+
+  getRaceData(subsession_id: number):any{
+    var subj = new Subject<any>();
+    this.http.get(`data/results/get?subsession_id=${subsession_id}&include_licenses=false`).subscribe((x:any) => {
+      this.extractAmazonData(x.link).subscribe((response:any) => {
+        subj.next(response);
+      });
+    });
+    return subj.asObservable();
+  }
+
 }
